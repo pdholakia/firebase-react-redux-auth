@@ -2,7 +2,9 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import * as Actions from '../actions';
-import { Button } from 'react-bootstrap';
+import { Button, Checkbox } from 'react-bootstrap';
+import { Link } from 'react-router';
+import '../styles/social.css';
 
 const validate = values => {
   const errors = {};
@@ -46,34 +48,56 @@ class Login extends React.Component {
     return(
       <div className="container box">
         <div className="col-md-6 col-md-offset-3">
-          <h2 className="text-center">Log In</h2>
+          <h4 className="text-center">Login with</h4>
 
           { this.renderAuthenticationError() }
 
-  
-        <div className="row socialButtons">
-            <Button bsStyle="primary" className="col-xs-3 col-xs-offset-1 loginFB">Facebook</Button>
-            <Button bsStyle="primary" className="col-xs-3 col-xs-offset-1 loginGO">Google</Button>
-            <Button bsStyle="primary" className="col-xs-3 col-xs-offset-1 loginTW">Twitter</Button>
-        </div>
-
-        <div className="row omb_row-sm-offset-3 omb_loginOr">
-            <div className="col-xs-12 col-sm-6">
-                <hr className="omb_hrOr" />
-                <span className="omb_spanOr"><strong><em>or</em></strong></span>
+            <div className="row">
+                <div className="row">
+                    <div className="col-md-4">
+                        <Button className="btn btn-block btn-social btn-facebook">
+                            <span className="fa fa-facebook"></span>Facebook
+                        </Button>
+                    </div>
+                    <div className="col-md-4">
+                        <Button className="btn btn-block btn-social btn-google">
+                            <span className="fa fa-google"></span>Google
+                        </Button>
+                    </div>
+                    <div className="col-md-4">
+                        <Button className="btn btn-block btn-social btn-twitter">
+                            <span className="fa fa-twitter"></span>Twitter
+                        </Button>
+                    </div>                                        
+                </div>
             </div>
-        </div>
+        
+            <div className="row">
 
-        <div className="row">
-          <form onSubmit={this.props.handleSubmit(this.handleFormSubmit)} className="col-xs-offset-1">
-            <Field name="email" component={this.renderField} className="form-control" type="text" label="Email"/>
-            <Field name="password" component={this.renderField} className="form-control" type="password" label="Password"/>
-            
-            <button action="submit" className="btn btn-primary pull-left">Login</button>
-            <button action="submit" className="btn btn-link pull-right">Forgot Password</button>
+                <div className="signup-or-separator">
+                    <span className="h6 signup-or-separator-text">or with email</span>
+                    <hr />
+                </div>
 
-          </form>
-        </div>
+                <form onSubmit={this.props.handleSubmit(this.handleFormSubmit)}>
+                    <Field name="email" component={this.renderField} className="form-control" type="text" label="Email"/>
+                    <Field name="password" component={this.renderField} className="form-control" type="password" label="Password"/>
+
+                    <Button action="submit" bsStyle="primary" className="col-md-12">Login</Button>
+
+                    <div className="row">
+                        <div className="col-md-6">
+                            <Checkbox> Remember me </Checkbox>
+                        </div>
+                        <div className="col-md-6">	
+                            <Link className=" pull-right-md frgt-pswd" to="#">Forgot Password</Link>
+                        </div>
+                    </div>
+
+                </form>            
+
+            </div>        
+
         </div>
       </div>
     );

@@ -2,41 +2,45 @@
     border-radius: 0px !important;
 }
 
-
-.loginFB {background: #3b5998;}
-.loginGO {background: #c32f10;}
-.loginTW{background: #00aced;}
-
-.socialButtons {
-   	margin-top: 15px !important;
-	margin-bottom: 15px !important; 
-}
-
-.box {
-    border: 1px;
-    border-color: grey;
-}
-
-.omb_hrOr {
-	background-color: #cdcdcd;
-	height: 1px;
-	margin-top: 0px !important;
-	margin-bottom: 20px !important;
-}
-
-.omb_spanOr {
-	display: block;
-	position: absolute;
-	left: 50%;
-	top: -0.9em;
-	margin-left: -1.5em;
-	background-color: white;
-	width: 3em;
+.signup-or-separator {
+	background: none;
+	height: 34px;
+	position: relative;
 	text-align: center;
 }
 
-@media (min-width: 768px) {
-    .omb_row-sm-offset-3 div:first-child[class*="col-"] {
-        margin-left: 30%;
+.signup-or-separator-text {
+	background-color: #fff;
+	display: inline-block;
+	padding: 8px;
+}
+
+ .h6 {
+	font-size: 14px;
+	font-weight: bold;
+	color: #757575;
+	line-height: 1.1;
+	text-rendering: optimizelegibility;
+}
+
+.signup-or-separator hr {
+    margin: -25px auto 10px;
+    width: 100%;	
+ }
+
+@media screen and (max-width: 480px){
+    .pull-right-md {
+        float: left;
     }
+}
+
+@media screen and (min-width: 769px) {
+    .pull-right-md {
+        float: right;
+    }
+}
+
+.frgt-pswd
+{
+	margin: 5px 0 10px;
 }
