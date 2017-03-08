@@ -1,8 +1,8 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import * as Actions from '../actions';
 import { Button, Checkbox } from 'react-bootstrap';
+import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router';
 import '../styles/social.css';
 
@@ -46,7 +46,7 @@ class Login extends React.Component {
 
   render() {
     return(
-      <div className="container box">
+      <div className="container">
         <div className="col-md-6 col-md-offset-3">
           <h4 className="text-center">Login with</h4>
 
