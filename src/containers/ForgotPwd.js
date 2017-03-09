@@ -20,7 +20,8 @@ const validate = values => {
 
 class ForgotPwd extends React.Component {
   handleFormSubmit = (values) => {
-    this.props.forgotPwd(values);
+    console.log('fired');
+    this.props.sendPwdResetMail(values);
   };
 
   renderField = ({ input, label, type, meta: { touched, error } }) => (
@@ -33,9 +34,11 @@ class ForgotPwd extends React.Component {
     </fieldset>
   );
 
-  renderAuthenticationError() {
-    if (this.props.authenticationError) {
-      return <div className="alert alert-danger">{ this.props.authenticationError }</div>;
+  renderPasswordResetMessage() {
+    if (this.props.passwordResetError === "Password reset link is sent to the given email address.") {
+      return <div className="alert alert-success">{ this.props.passwordResetError }</div>
+    } else if (this.props.passwordResetError !== null) {
+      return <div className="alert alert-warning">{ this.props.passwordResetError }</div>;
     }
     return <div></div>;
   }  
@@ -49,14 +52,15 @@ class ForgotPwd extends React.Component {
             <div className="col-md-10 col-md-offset-1">
               <h4 className="text-center">Reset password</h4>
               
-          { this.renderAuthenticationError() }
+          
 
                 <div className="row">
-
+                { this.renderPasswordResetMessage() }
 
                 <form onSubmit={this.props.handleSubmit(this.handleFormSubmit)}>
                   <p>Enter the email address associated with your account, and we will email you a link to reset your password.</p>  
                   <Field name="email" type="text" component={this.renderField} label="Email" />
+
                   <Button action="submit" bsStyle="primary" className="col-md-12">Reset Password</Button>
                 </form>
                   
@@ -72,7 +76,7 @@ class ForgotPwd extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    authenticationError: state.auth.error
+    passwordResetError: state.auth.error
   }
 }
 

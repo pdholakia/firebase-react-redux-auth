@@ -101,7 +101,7 @@ class Login extends React.Component {
                             <Checkbox> Remember me </Checkbox>
                         </div>*/}
                         <div className="col-md-12">
-                            <Link bsStyle="link" className="pull-right-md" to="/reset">Forgot Password</Link>
+                            <Link className="pull-right-md" to="/reset">Forgot Password</Link>
                         </div>
                     </div>
 

@@ -5,6 +5,9 @@ import firebase from 'firebase';
 export const SIGN_OUT_USER = 'SIGN_OUT_USER';
 export const AUTH_ERROR = 'AUTH_ERROR';
 export const AUTH_USER = 'AUTH_USER';
+export const RESET_SUCCESS = 'RESET_SUCCESS';
+export const RESET_ERROR = 'RESET_ERROR';
+
 
 var config = {
     apiKey: "AIzaSyB0JH2ZPeDkN4qSLeyfa3t5zM5pGM0PFQk",
@@ -109,6 +112,37 @@ export function signOutUser()
         dispatch(authError(error));
         console.log(error);
       });
+  }
+}
+
+export function sendPwdResetMail(user) {
+
+  return function(dispatch) {
+    firebase.auth().sendPasswordResetEmail(user.email)
+      .then(() => {
+        // Sign-out successful.
+        //browserHistory.push('/reset-sent');
+        dispatch(resetSuccess("Password reset link is sent to the given email address."));
+      })
+      .catch(error => {
+        dispatch(resetError(error));
+        console.log(error);
+      });
+  }
+
+}
+
+export function resetSuccess(success) {
+  return {
+    type: RESET_SUCCESS,
+    payload: success
+  }
+}
+
+export function resetError(error) {
+  return {
+    type: RESET_ERROR,
+    payload: error
   }
 }
 

@@ -1,4 +1,4 @@
-import { AUTH_USER, SIGN_OUT_USER, AUTH_ERROR } from '../actions';
+import { AUTH_USER, SIGN_OUT_USER, AUTH_ERROR, RESET_SUCCESS, RESET_ERROR } from '../actions';
 
 const initialState =  {
   authenticated: false,
@@ -24,6 +24,16 @@ export default function gifs(state = initialState, action) {
         ...state,
         error: action.payload.message
       };
+    case RESET_SUCCESS:
+      return {
+        ...state,
+        error: action.payload
+      };       
+    case RESET_ERROR:
+      return {
+        ...state,
+        error: action.payload.message
+      };      
     default:
       return state;
   }
