@@ -16,6 +16,45 @@ var config = {
 
 firebase.initializeApp(config);
 
+export function signUpUser(providerName, credentials = "") {
+
+  let provider = "";
+
+  switch (providerName) {
+    case "google":
+      provider = new firebase.auth.GoogleAuthProvider();
+      break;
+    case "facebook":
+      provider = new firebase.auth.FacebookAuthProvider();
+      break;
+    case "twitter":
+      provider = new firebase.auth.TwitterAuthProvider();
+      break;
+    case "email":
+      provider = new firebase.auth.EmailAuthProvider();
+      break;      
+  }
+
+  return function(dispatch) {
+    let authPromise = "";
+    if (providerName === "email") {
+      authPromise = firebase.auth().createUserWithEmailAndPassword(credentials.email, credentials.password);
+    } else {
+      authPromise = firebase.auth().signInWithPopup(provider);
+    }
+    
+      authPromise.then(response => {
+        dispatch(authUser());
+        browserHistory.push('/dashboard');
+        console.log(response.user);
+      })
+      .catch(error => {
+        console.log(error);
+        dispatch(authError(error));
+      });
+  }
+}
+
 export function signInUser(providerName, credentials = "") {
 
   let provider = "";

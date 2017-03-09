@@ -34,8 +34,12 @@ const validate = values => {
 
 class Signup extends React.Component {
   handleFormSubmit = (values) => {
-    this.props.signUpUser(values);
+    this.props.signUpUser("email", values);
   };
+
+  handleSocialLogin = (providerName) => {
+    this.props.signUpUser(providerName, "");
+  }
 
   renderField = ({ input, label, type, meta: { touched, error } }) => (
     <fieldset className={`form-group ${touched && error ? 'has-error' : ''}`}>
@@ -70,17 +74,20 @@ class Signup extends React.Component {
                 <div className="row">
                   <ButtonToolbar>              
                     <div className="col-md-4">
-                        <Button className="btn btn-block btn-social btn-facebook">
+                        <Button className="btn btn-block btn-social btn-facebook"
+                                onClick={()=>this.handleSocialLogin("facebook")}>
                             <span className="fa fa-facebook"></span>Facebook
                         </Button>
                     </div>
                     <div className="col-md-4">
-                        <Button className="btn btn-block btn-social btn-google">
+                        <Button className="btn btn-block btn-social btn-google"
+                                onClick={()=>this.handleSocialLogin("google")}>
                             <span className="fa fa-google"></span>Google
                         </Button>
                     </div>
                     <div className="col-md-4">
-                        <Button className="btn btn-block btn-social btn-twitter">
+                        <Button className="btn btn-block btn-social btn-twitter"
+                                onClick={()=>this.handleSocialLogin("twitter")}>
                             <span className="fa fa-twitter"></span>Twitter
                         </Button>
                     </div>                                        

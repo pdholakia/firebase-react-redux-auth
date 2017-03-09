@@ -3,7 +3,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as Actions from '../actions';
-import { Button, Checkbox, Panel } from 'react-bootstrap';
+import { browserHistory } from 'react-router';
+import { Button, Panel } from 'react-bootstrap';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router';
 import '../styles/social.css';
@@ -92,15 +93,15 @@ class Login extends React.Component {
                 <form onSubmit={this.props.handleSubmit(this.handleFormSubmit)}>
                     <Field name="email" component={this.renderField} className="form-control" type="text" label="Email"/>
                     <Field name="password" component={this.renderField} className="form-control" type="password" label="Password"/>
-
+                    
                     <Button action="submit" bsStyle="primary" className="col-md-12">Login</Button>
 
                     <div className="row">
-                        <div className="col-md-6">
+                        {/*<div className="col-md-6">
                             <Checkbox> Remember me </Checkbox>
-                        </div>
-                        <div className="col-md-6">	
-                            <Link className=" pull-right-md frgt-pswd" to="/reset">Forgot Password</Link>
+                        </div>*/}
+                        <div className="col-md-12">
+                            <Link bsStyle="link" className="pull-right-md" to="/reset">Forgot Password</Link>
                         </div>
                     </div>
 
