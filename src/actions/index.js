@@ -16,6 +16,63 @@ var config = {
 
 firebase.initializeApp(config);
 
+export function signInUser(providerName, credentials = "") {
+
+  let provider = "";
+
+  switch (providerName) {
+    case "google":
+      provider = new firebase.auth.GoogleAuthProvider();
+      break;
+    case "facebook":
+      provider = new firebase.auth.FacebookAuthProvider();
+      break;
+    case "twitter":
+      provider = new firebase.auth.TwitterAuthProvider();
+      break;
+    case "email":
+      provider = new firebase.auth.EmailAuthProvider();
+      break;      
+  }
+
+  return function(dispatch) {
+    let authPromise = "";
+    if (providerName === "email") {
+      authPromise = firebase.auth().signInWithEmailAndPassword(credentials.email, credentials.password);
+    } else {
+      authPromise = firebase.auth().signInWithPopup(provider);
+    }
+    
+      authPromise.then(response => {
+        dispatch(authUser());
+        browserHistory.push('/dashboard');
+        console.log(response.user);
+      })
+      .catch(error => {
+        console.log(error);
+        dispatch(authError(error));
+      });
+  }
+}
+
+export function signOutUser()
+{
+  // browserHistory.push('/');
+  // firebase.auth().signOut();
+  return function(dispatch) {
+    firebase.auth().signOut()
+      .then( () => {
+        // Sign-out successful.
+        browserHistory.push('/');
+        dispatch(authOut());
+      })
+      .catch(error => {
+        dispatch(authError(error));
+        console.log(error);
+      });
+  }
+}
+
 export function authOut() {
   return {
     type: SIGN_OUT_USER

@@ -63,9 +63,10 @@ class Signup extends React.Component {
             <div className="col-md-10 col-md-offset-1">
               <h4 className="text-center">Sign up with</h4>
           
-          { this.renderAuthenticationError() }
+          
 
             <div className="row">
+                { this.renderAuthenticationError() }
                 <div className="row">
                   <ButtonToolbar>              
                     <div className="col-md-4">

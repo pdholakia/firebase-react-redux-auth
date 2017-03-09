@@ -7,12 +7,16 @@ import { Navbar, Nav, NavItem, Form, Button } from 'react-bootstrap';
 import * as Actions from '../actions';
 
 class Header extends React.Component {
+ 
+     handleSignout = () => {
+        this.props.signOutUser();
+    }
 
     renderAuthLinks() {
         if (this.props.authenticated) {
             return [
-                <NavItem eventKey={1}><Button bsStyle="link" data-toggle="modal" data-target="#at-login">Sign In</Button></NavItem>,
-                <NavItem eventKey={2}><Button bsStyle="link" data-toggle="modal" data-target="#at-login">Sign Up</Button></NavItem>
+                <NavItem eventKey={1}><Button bsStyle="link" onClick={() => browserHistory.push('/profile')}>Profile</Button></NavItem>,                
+                <NavItem eventKey={1}><Button bsStyle="link" onClick={() => this.handleSignout()}>Logout</Button></NavItem>           
             ]
         } else {
             return [
@@ -49,10 +53,4 @@ function mapStateToProps(state) {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(Actions, dispatch)
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, Actions)(Header);

@@ -26,8 +26,12 @@ const validate = values => {
 
 class Login extends React.Component {
   handleFormSubmit = (values) => {
-    this.props.signInUser(values);
+    this.props.signInUser("email", values);
   };
+
+  handleSocialLogin = (providerName) => {
+    this.props.signInUser(providerName, "");
+  }
 
   renderField = ({ input, label, type, meta: { touched, error } }) => (
     <fieldset className={`form-group ${touched && error ? 'has-error' : ''}`}>
@@ -41,7 +45,7 @@ class Login extends React.Component {
 
   renderAuthenticationError() {
     if (this.props.authenticationError) {
-      return <div className="alert alert-danger">{ this.props.authenticationError }</div>;
+      return <div className="alert alert-warning">{ this.props.authenticationError }</div>;
     }
     return <div></div>;
   }  
@@ -54,22 +58,24 @@ class Login extends React.Component {
             <div className="col-md-10 col-md-offset-1">
               <h4 className="text-center">Login with</h4>
 
-          { this.renderAuthenticationError() }
-
             <div className="row">
+                { this.renderAuthenticationError() }
                 <div className="row">
                     <div className="col-md-4">
-                        <Button className="btn btn-block btn-social btn-facebook">
+                        <Button className="btn btn-block btn-social btn-facebook" 
+                                onClick={()=>this.handleSocialLogin("facebook")}>
                             <span className="fa fa-facebook"></span>Facebook
                         </Button>
                     </div>
                     <div className="col-md-4">
-                        <Button className="btn btn-block btn-social btn-google">
+                        <Button className="btn btn-block btn-social btn-google"
+                                onClick={()=>this.handleSocialLogin("google")}>
                             <span className="fa fa-google"></span>Google
                         </Button>
                     </div>
                     <div className="col-md-4">
-                        <Button className="btn btn-block btn-social btn-twitter">
+                        <Button className="btn btn-block btn-social btn-twitter"
+                                onClick={()=>this.handleSocialLogin("twitter")}>
                             <span className="fa fa-twitter"></span>Twitter
                         </Button>
                     </div>                                        
