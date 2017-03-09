@@ -28,7 +28,7 @@ class Header extends React.Component {
                 <Navbar collapseOnSelect>
                     <Navbar.Header>
                         <Navbar.Brand>
-                            <Link href="#">Firebase React-Redux Auth</Link>
+                            <Link to="/">Firebase React-Redux Auth</Link>
                         </Navbar.Brand>
                         <Navbar.Toggle />
                     </Navbar.Header>

@@ -1,8 +1,10 @@
+/* Design based on http://bootsnipp.com/snippets/GzrWo */
+
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import * as Actions from '../actions';
-import { Button } from 'react-bootstrap';
+import { Button, Panel, ButtonToolbar } from 'react-bootstrap';
 import { Link } from 'react-router';
 import '../styles/social.css';
 
@@ -54,14 +56,18 @@ class Signup extends React.Component {
 
   render() {
     return (
+      
       <div className="container">
         <div className="col-md-6 col-md-offset-3">
-          <h4 className="text-center">Sign up with</h4>
+          <Panel>
+            <div className="col-md-10 col-md-offset-1">
+              <h4 className="text-center">Sign up with</h4>
           
           { this.renderAuthenticationError() }
 
             <div className="row">
                 <div className="row">
+                  <ButtonToolbar>              
                     <div className="col-md-4">
                         <Button className="btn btn-block btn-social btn-facebook">
                             <span className="fa fa-facebook"></span>Facebook
@@ -77,9 +83,10 @@ class Signup extends React.Component {
                             <span className="fa fa-twitter"></span>Twitter
                         </Button>
                     </div>                                        
+                  </ButtonToolbar>                              
                 </div>
             </div>
-        
+
             <div className="row">
 
                 <div className="signup-or-separator">
@@ -93,11 +100,16 @@ class Signup extends React.Component {
                   <Field name="passwordConfirmation" type="password" component={this.renderField} label="Password Confirmation" />
 
                     <Button action="submit" bsStyle="primary" className="col-md-12">Sign Up</Button>
-                </form>
+										<p>By signing up, I agree to <a href="#">Terms of Service</a>, and  <a href="#">Privacy Policy</a>. </p>
 
+                </form>
+                  
             </div>
+            </div>
+            </Panel>
         </div>
       </div>
+      
     );
   }
 }

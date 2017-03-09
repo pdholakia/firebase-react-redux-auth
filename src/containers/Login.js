@@ -1,7 +1,9 @@
+/* Design based on http://bootsnipp.com/snippets/GzrWo */
+
 import React from 'react';
 import { connect } from 'react-redux';
 import * as Actions from '../actions';
-import { Button, Checkbox } from 'react-bootstrap';
+import { Button, Checkbox, Panel } from 'react-bootstrap';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router';
 import '../styles/social.css';
@@ -48,7 +50,9 @@ class Login extends React.Component {
     return(
       <div className="container">
         <div className="col-md-6 col-md-offset-3">
-          <h4 className="text-center">Login with</h4>
+          <Panel>
+            <div className="col-md-10 col-md-offset-1">
+              <h4 className="text-center">Login with</h4>
 
           { this.renderAuthenticationError() }
 
@@ -90,14 +94,15 @@ class Login extends React.Component {
                             <Checkbox> Remember me </Checkbox>
                         </div>
                         <div className="col-md-6">	
-                            <Link className=" pull-right-md frgt-pswd" to="#">Forgot Password</Link>
+                            <Link className=" pull-right-md frgt-pswd" to="/reset">Forgot Password</Link>
                         </div>
                     </div>
 
                 </form>            
 
             </div>        
-
+            </div>
+            </Panel>
         </div>
       </div>
     );
