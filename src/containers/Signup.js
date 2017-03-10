@@ -53,7 +53,7 @@ class Signup extends React.Component {
 
   renderAuthenticationError() {
     if (this.props.authenticationError) {
-      return <div className="alert alert-danger">{ this.props.authenticationError }</div>;
+      return <div className="alert alert-warning">{ this.props.authenticationError }</div>;
     }
     return <div></div>;
   }  
@@ -74,19 +74,19 @@ class Signup extends React.Component {
                 <div className="row">
                   <ButtonToolbar>              
                     <div className="col-md-4">
-                        <Button className="btn btn-block btn-social btn-facebook"
+                        <Button bsClass="btn btn-block btn-social btn-facebook"
                                 onClick={()=>this.handleSocialLogin("facebook")}>
                             <span className="fa fa-facebook"></span>Facebook
                         </Button>
                     </div>
                     <div className="col-md-4">
-                        <Button className="btn btn-block btn-social btn-google"
+                        <Button bsClass="btn btn-block btn-social btn-google"
                                 onClick={()=>this.handleSocialLogin("google")}>
                             <span className="fa fa-google"></span>Google
                         </Button>
                     </div>
                     <div className="col-md-4">
-                        <Button className="btn btn-block btn-social btn-twitter"
+                        <Button bsClass="btn btn-block btn-social btn-twitter"
                                 onClick={()=>this.handleSocialLogin("twitter")}>
                             <span className="fa fa-twitter"></span>Twitter
                         </Button>
@@ -107,7 +107,7 @@ class Signup extends React.Component {
                   <Field name="password" type="password" component={this.renderField} label="Password" />
                   <Field name="passwordConfirmation" type="password" component={this.renderField} label="Password Confirmation" />
 
-                    <Button action="submit" bsStyle="primary" className="col-md-12">Sign Up</Button>
+                    <Button type="submit" bsStyle="primary" className="col-md-12">Sign Up</Button>
 										<p>By signing up, I agree to <a href="#">Terms of Service</a>, and  <a href="#">Privacy Policy</a>. </p>
 
                 </form>

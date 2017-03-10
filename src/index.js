@@ -17,7 +17,7 @@ ReactDOM.render(
         {/*<IndexRoute component={Home} />*/}
         <Route path="login" component={Login} />
         <Route path="signup" component={Signup} />
-        <Route path="reset" component={ForgotPwd} />
+        <Route path="forgot" component={ForgotPwd} />
       </Route>
     </Router>
   </Provider>,

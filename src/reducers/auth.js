@@ -2,7 +2,8 @@ import { AUTH_USER, SIGN_OUT_USER, AUTH_ERROR, RESET_SUCCESS, RESET_ERROR } from
 
 const initialState =  {
   authenticated: false,
-  error: null
+  error: null,
+  resetMsg: null
 };
 
 export default function gifs(state = initialState, action) {
@@ -11,28 +12,33 @@ export default function gifs(state = initialState, action) {
       return {
         ...state,
         authenticated: true,
-        error: null
+        error: null,
+        resetMsg: null
       };
     case SIGN_OUT_USER:
       return {
         ...state,
         authenticated: false,
-        error: null
+        error: null,
+        resetMsg: null
       };
     case AUTH_ERROR:
       return {
         ...state,
-        error: action.payload.message
+        error: action.payload.message,
+        resetMsg: null
       };
     case RESET_SUCCESS:
       return {
         ...state,
-        error: action.payload
+        error: null,
+        resetMsg: action.payload
       };       
     case RESET_ERROR:
       return {
         ...state,
-        error: action.payload.message
+        error: null,
+        resetMsg: action.payload.message
       };      
     default:
       return state;

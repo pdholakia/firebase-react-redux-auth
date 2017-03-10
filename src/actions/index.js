@@ -120,9 +120,22 @@ export function sendPwdResetMail(user) {
   return function(dispatch) {
     firebase.auth().sendPasswordResetEmail(user.email)
       .then(() => {
-        // Sign-out successful.
-        //browserHistory.push('/reset-sent');
         dispatch(resetSuccess("Password reset link is sent to the given email address."));
+      })
+      .catch(error => {
+        dispatch(resetError(error));
+        console.log(error);
+      });
+  }
+
+}
+
+export function confirmPasswordReset(code, user) {
+
+  return function(dispatch) {
+    firebase.auth().confirmPasswordReset(code, user.password)
+      .then(() => {
+        dispatch(resetSuccess("Password reset successfully."));
       })
       .catch(error => {
         dispatch(resetError(error));

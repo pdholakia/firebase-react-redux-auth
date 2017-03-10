@@ -94,14 +94,14 @@ class Login extends React.Component {
                     <Field name="email" component={this.renderField} className="form-control" type="text" label="Email"/>
                     <Field name="password" component={this.renderField} className="form-control" type="password" label="Password"/>
                     
-                    <Button action="submit" bsStyle="primary" className="col-md-12">Login</Button>
+                    <Button type="submit" bsStyle="primary" className="col-md-12">Login</Button>
 
                     <div className="row">
                         {/*<div className="col-md-6">
                             <Checkbox> Remember me </Checkbox>
                         </div>*/}
                         <div className="col-md-12">
-                            <Link className="pull-right-md" to="/reset">Forgot Password</Link>
+                            <Link className="pull-right-md" to="/forgot">Forgot Password</Link>
                         </div>
                     </div>
 

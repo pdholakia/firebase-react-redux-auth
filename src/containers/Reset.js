@@ -19,9 +19,9 @@ const validate = values => {
   return errors;
 };
 
-class ForgotPwd extends React.Component {
+class ResetPassword extends React.Component {
   handleFormSubmit = (values) => {
-    this.props.sendPwdResetMail(values);
+    this.props.confirmPasswordReset(this.props.location.query.oobCode, values);
   };
 
   renderField = ({ input, label, type, meta: { touched, error } }) => (
@@ -48,7 +48,8 @@ class ForgotPwd extends React.Component {
           <div className="alert alert-warning">{ this.props.passwordResetMsg }</div>
           <form onSubmit={this.props.handleSubmit(this.handleFormSubmit)}>
             <p>Enter the email address associated with your account, and we will email you a link to reset your password.</p>  
-            <Field name="email" type="text" component={this.renderField} label="Email" />
+            <Field name="password" type="password" component={this.renderField} label="Password" />
+            <Field name="passwordConfirmation" type="password" component={this.renderField} label="Password Confirmation" />
 
             <Button type="submit" bsStyle="primary" className="col-md-12">Reset Password</Button>
           </form>      
@@ -58,8 +59,9 @@ class ForgotPwd extends React.Component {
     return (
       <div>
         <form onSubmit={this.props.handleSubmit(this.handleFormSubmit)}>
-          <p>Enter the email address associated with your account, and we will email you a link to reset your password.</p>  
-          <Field name="email" type="text" component={this.renderField} label="Email" />
+          {/*<p>Enter the email address associated with your account, and we will email you a link to reset your password.</p>  */}
+          <Field name="password" type="password" component={this.renderField} label="Password" />
+          <Field name="passwordConfirmation" type="password" component={this.renderField} label="Password Confirmation" />
 
           <Button type="submit" bsStyle="primary" className="col-md-12">Reset Password</Button>
         </form>    
@@ -97,6 +99,6 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, Actions)(reduxForm({
-  form: 'forgotpwd',
+  form: 'resetpassword',
   validate
-})(ForgotPwd));
+})(ResetPassword));
