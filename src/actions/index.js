@@ -48,7 +48,7 @@ export function signUpUser(providerName, credentials = "") {
     
       authPromise.then(response => {
         dispatch(authUser());
-        browserHistory.push('/dashboard');
+        browserHistory.push('/profile');
         console.log(response.user);
       })
       .catch(error => {
@@ -87,7 +87,7 @@ export function signInUser(providerName, credentials = "") {
     
       authPromise.then(response => {
         dispatch(authUser());
-        browserHistory.push('/dashboard');
+        browserHistory.push('/profile');
         console.log(response.user);
       })
       .catch(error => {
@@ -152,10 +152,30 @@ export function resetSuccess(success) {
   }
 }
 
+export function resetSuccessMessage() {
+  browserHistory.push('/login');
+  return {
+    type: RESET_SUCCESS,
+    payload: null
+  }
+}
+
 export function resetError(error) {
   return {
     type: RESET_ERROR,
     payload: error
+  }
+}
+
+export function verifyAuth() {
+  return function (dispatch) {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        dispatch(authUser());
+      } else {
+        dispatch(signOutUser());
+      }
+    });
   }
 }
 

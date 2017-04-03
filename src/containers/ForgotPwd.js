@@ -9,6 +9,8 @@ import { Button, Panel } from 'react-bootstrap';
 import { Link } from 'react-router';
 
 const validate = values => {
+  
+  let RESET_SUCCESSFUL = false;
   const errors = {};
 
   if (!values.email) {
@@ -22,6 +24,10 @@ const validate = values => {
 class ForgotPwd extends React.Component {
   handleFormSubmit = (values) => {
     this.props.sendPwdResetMail(values);
+  };
+  
+  handleLoginRedirect = (values) => {
+    this.props.resetSuccessMessage();
   };
 
   renderField = ({ input, label, type, meta: { touched, error } }) => (
@@ -39,7 +45,7 @@ class ForgotPwd extends React.Component {
       return (
           <div>
             <div className="alert alert-success">{ this.props.passwordResetMsg }</div>
-            <Button type="button" bsStyle="primary" className="col-md-12" onClick={() => browserHistory.push('/login')}>Login Now</Button>
+            <Button type="button" bsStyle="primary" className="col-md-12" onClick={() => this.handleLoginRedirect()}>Login Now</Button>
           </div>
       )
     } else if (this.props.passwordResetMsg !== null) {

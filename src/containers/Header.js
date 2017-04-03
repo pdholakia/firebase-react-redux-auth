@@ -14,10 +14,11 @@ class Header extends React.Component {
 
     renderAuthLinks() {
         if (this.props.authenticated) {
-            return [
-                <NavItem eventKey={1}><Button bsStyle="link" onClick={() => browserHistory.push('/profile')}>Profile</Button></NavItem>,                
-                <NavItem eventKey={2}><Button bsStyle="link" onClick={() => this.handleSignout()}>Logout</Button></NavItem>           
-            ]
+            return <NavItem eventKey={1}><Button bsStyle="link" onClick={() => this.handleSignout()}>Logout</Button></NavItem>    
+            {/*[
+                <NavItem eventKey={1}><Button bsStyle="link" onClick={() => browserHistory.push('/profile')}>Profile</Button></NavItem> ,              
+                <NavItem eventKey={1}><Button bsStyle="link" onClick={() => this.handleSignout()}>Logout</Button></NavItem>           
+            ] */}
         } else {
             return [
                 <NavItem eventKey={1}><Button bsStyle="link" onClick={() => browserHistory.push('/login')}>Login</Button></NavItem>,                

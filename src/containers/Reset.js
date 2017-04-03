@@ -35,7 +35,7 @@ class ResetPassword extends React.Component {
   );
 
   renderPasswordResetMessage() {
-    if (this.props.passwordResetMsg === "Password reset link is sent to the given email address.") {
+    if (this.props.passwordResetMsg === "Password reset successfully.") {
       return (
           <div>
             <div className="alert alert-success">{ this.props.passwordResetMsg }</div>
@@ -47,7 +47,6 @@ class ResetPassword extends React.Component {
         <div>
           <div className="alert alert-warning">{ this.props.passwordResetMsg }</div>
           <form onSubmit={this.props.handleSubmit(this.handleFormSubmit)}>
-            <p>Enter the email address associated with your account, and we will email you a link to reset your password.</p>  
             <Field name="password" type="password" component={this.renderField} label="Password" />
             <Field name="passwordConfirmation" type="password" component={this.renderField} label="Password Confirmation" />
 
@@ -59,7 +58,6 @@ class ResetPassword extends React.Component {
     return (
       <div>
         <form onSubmit={this.props.handleSubmit(this.handleFormSubmit)}>
-          {/*<p>Enter the email address associated with your account, and we will email you a link to reset your password.</p>  */}
           <Field name="password" type="password" component={this.renderField} label="Password" />
           <Field name="passwordConfirmation" type="password" component={this.renderField} label="Password Confirmation" />
 
